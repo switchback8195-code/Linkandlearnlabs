@@ -61,7 +61,7 @@ const Dashboard = () => {
       <div className="container">
         {/* Welcome Header */}
         <div style={{ marginBottom: '40px' }}>
-          <h1 className="heading-2" style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>Welcome back, {mockUser.name}!</h1>
+          <h1 className="heading-2" style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>Welcome back, {user.name}!</h1>
           <p className="body-medium" style={{ color: 'var(--text-secondary)' }}>Here's what's happening in your learning journey</p>
         </div>
 
@@ -70,21 +70,21 @@ const Dashboard = () => {
           <Card style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
               <BookOpen size={24} color="var(--brand-primary)" />
-              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>{mockUser.coursesCompleted}</h3>
+              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>{user.coursesCompleted}</h3>
             </div>
             <p className="body-small">Courses Completed</p>
           </Card>
           <Card style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
               <Cpu size={24} color="var(--brand-primary)" />
-              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>{mockUser.buildsShared}</h3>
+              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>{user.buildsShared}</h3>
             </div>
             <p className="body-small">Builds Shared</p>
           </Card>
           <Card style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
               <Award size={24} color="var(--brand-primary)" />
-              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>Gold</h3>
+              <h3 className="heading-5" style={{ color: 'var(--text-primary)' }}>{user.communityRank}</h3>
             </div>
             <p className="body-small">Community Rank</p>
           </Card>
