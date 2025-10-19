@@ -125,7 +125,7 @@ async def get_learning_path(path_id: str):
 
 
 @api_router.post("/learning-paths/{path_id}/enroll")
-async def enroll_learning_path(path_id: str, current_user: dict = Depends(lambda: get_current_user(db))):
+async def enroll_learning_path(path_id: str, current_user: dict = Depends(get_current_user)):
     """Enroll in a learning path"""
     path = await db.learning_paths.find_one({"id": path_id})
     if not path:
@@ -150,7 +150,7 @@ async def get_builds(limit: int = 10, offset: int = 0):
 
 
 @api_router.post("/builds", response_model=Build)
-async def create_build(build_data: BuildCreate, current_user: dict = Depends(lambda: get_current_user(db))):
+async def create_build(build_data: BuildCreate, current_user: dict = Depends(get_current_user)):
     """Create a new build"""
     build = Build(
         title=build_data.title,
@@ -172,7 +172,7 @@ async def create_build(build_data: BuildCreate, current_user: dict = Depends(lam
 
 
 @api_router.post("/builds/{build_id}/like")
-async def like_build(build_id: str, current_user: dict = Depends(lambda: get_current_user(db))):
+async def like_build(build_id: str, current_user: dict = Depends(get_current_user)):
     """Like a build"""
     build = await db.builds.find_one({"id": build_id})
     if not build:
@@ -196,7 +196,7 @@ async def get_events(upcoming: bool = True):
 
 
 @api_router.post("/events/{event_id}/register")
-async def register_event(event_id: str, current_user: dict = Depends(lambda: get_current_user(db))):
+async def register_event(event_id: str, current_user: dict = Depends(get_current_user)):
     """Register for an event"""
     event = await db.events.find_one({"id": event_id})
     if not event:
@@ -236,7 +236,7 @@ async def get_forum_topics(category: Optional[str] = None, limit: int = 20, offs
 
 
 @api_router.post("/forum/topics", response_model=ForumTopic)
-async def create_forum_topic(topic_data: ForumTopicCreate, current_user: dict = Depends(lambda: get_current_user(db))):
+async def create_forum_topic(topic_data: ForumTopicCreate, current_user: dict = Depends(get_current_user)):
     """Create a new forum topic"""
     topic = ForumTopic(
         title=topic_data.title,
@@ -250,7 +250,7 @@ async def create_forum_topic(topic_data: ForumTopicCreate, current_user: dict = 
 
 
 @api_router.post("/forum/topics/{topic_id}/reply")
-async def reply_forum_topic(topic_id: str, content: str, current_user: dict = Depends(lambda: get_current_user(db))):
+async def reply_forum_topic(topic_id: str, content: str, current_user: dict = Depends(get_current_user)):
     """Reply to a forum topic"""
     topic = await db.forum_topics.find_one({"id": topic_id})
     if not topic:
