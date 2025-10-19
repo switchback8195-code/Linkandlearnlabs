@@ -45,6 +45,16 @@ async def startup_seed_data():
     if await db.events.count_documents({}) == 0:
         await db.events.insert_many(events_data)
         logging.info("Seeded events")
+    
+    # Seed affiliate tools
+    if await db.affiliate_tools.count_documents({}) == 0:
+        await db.affiliate_tools.insert_many(affiliate_tools_data)
+        logging.info("Seeded affiliate tools")
+    
+    # Seed videos
+    if await db.videos.count_documents({}) == 0:
+        await db.videos.insert_many(videos_data)
+        logging.info("Seeded videos")
 
 
 # ===== Authentication Routes =====
