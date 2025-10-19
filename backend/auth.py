@@ -23,8 +23,10 @@ async def exchange_session_id(session_id: str) -> dict:
             raise HTTPException(status_code=401, detail="Invalid session_id")
 
 
-async def get_current_user(db: AsyncIOMotorDatabase, session_token: Optional[str] = Cookie(None), authorization: Optional[str] = Header(None)):
+async def get_current_user(session_token: Optional[str] = Cookie(None), authorization: Optional[str] = Header(None)):
     """Get current user from session token (cookie or header)"""
+    from server import db  # Import db from server
+    
     token = session_token
     
     # Fallback to Authorization header if cookie not present
