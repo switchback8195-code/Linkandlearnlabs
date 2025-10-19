@@ -277,6 +277,22 @@ async def reply_forum_topic(topic_id: str, content: str, current_user: dict = De
     return reply
 
 
+# ===== Affiliate Tools Routes =====
+@api_router.get("/affiliate-tools", response_model=List[AffiliateTool])
+async def get_affiliate_tools():
+    """Get all affiliate tools"""
+    tools = await db.affiliate_tools.find().sort("featured", -1).to_list(1000)
+    return tools
+
+
+# ===== Videos Routes =====
+@api_router.get("/videos", response_model=List[Video])
+async def get_videos():
+    """Get all video tutorials"""
+    videos = await db.videos.find().sort("created_at", -1).to_list(1000)
+    return videos
+
+
 # ===== Test Route =====
 @api_router.get("/")
 async def root():
