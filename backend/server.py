@@ -11,10 +11,10 @@ from datetime import datetime, timezone
 
 from models import (
     User, Session, SessionCreate, LearningPath, Build, BuildCreate,
-    Event, ForumTopic, ForumTopicCreate, ForumReply
+    Event, ForumTopic, ForumTopicCreate, ForumReply, AffiliateTool, Video
 )
 from auth import exchange_session_id, get_current_user, create_or_update_user, create_session
-from seed_data import learning_paths_data, events_data
+from seed_data import learning_paths_data, events_data, affiliate_tools_data, videos_data
 
 
 ROOT_DIR = Path(__file__).parent
