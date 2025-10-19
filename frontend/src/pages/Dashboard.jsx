@@ -199,7 +199,7 @@ const Dashboard = () => {
 
           <TabsContent value="events">
             <div style={{ display: 'grid', gap: '20px' }}>
-              {mockEvents.map((event) => (
+              {events.map((event) => (
                 <Card key={event.id} className="hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '24px', cursor: 'pointer' }}>
                   <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
                     <img 
