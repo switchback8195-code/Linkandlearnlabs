@@ -241,7 +241,7 @@ const Home = () => {
             <p className="body-medium" style={{ color: 'var(--text-secondary)' }}>Join the conversation and get help from experts</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {mockForumTopics.map((topic) => (
+            {forumTopics.map((topic) => (
               <Card key={topic.id} className="hover-lift" style={{ background: 'var(--bg-page)', border: '1px solid var(--border-medium)', padding: '24px', cursor: 'pointer' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: '20px', flexWrap: 'wrap' }}>
                   <div style={{ flex: 1, minWidth: '300px' }}>
