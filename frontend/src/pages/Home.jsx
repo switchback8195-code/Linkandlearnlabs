@@ -163,7 +163,7 @@ const Home = () => {
             <p className="body-medium" style={{ color: 'var(--text-secondary)' }}>Master computer building with our structured courses</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
-            {mockLearningPaths.map((path) => (
+            {learningPaths.map((path) => (
               <Card key={path.id} className="hover-lift" style={{ background: 'var(--bg-page)', border: '1px solid var(--border-medium)', padding: '32px', cursor: 'pointer' }}>
                 <div style={{ marginBottom: '16px' }}>
                   <Badge style={{ background: path.difficulty === 'Beginner' ? 'var(--secondary-olive)' : path.difficulty === 'Intermediate' ? 'var(--secondary-yellow)' : 'var(--brand-primary)', color: 'var(--text-inverse)', padding: '4px 12px' }}>
