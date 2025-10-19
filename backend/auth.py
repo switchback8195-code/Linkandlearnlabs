@@ -1,11 +1,12 @@
 from fastapi import HTTPException, Cookie, Header
 from typing import Optional
 import httpx
+import os
 from datetime import datetime, timedelta, timezone
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
 
-EMERGENT_SESSION_API = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
+EMERGENT_SESSION_API = os.environ.get('AUTH_API_URL', 'https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data')
 
 
 async def exchange_session_id(session_id: str) -> dict:
