@@ -90,13 +90,13 @@ async def create_auth_session(session_data: SessionCreate, response: Response):
 
 
 @api_router.get("/auth/me")
-async def get_me(current_user: dict = Depends(lambda: get_current_user(db))):
+async def get_me(current_user: dict = Depends(get_current_user)):
     """Get current authenticated user"""
     return current_user
 
 
 @api_router.post("/auth/logout")
-async def logout(response: Response, current_user: dict = Depends(lambda: get_current_user(db))):
+async def logout(response: Response, current_user: dict = Depends(get_current_user)):
     """Logout user and clear session"""
     # Delete session from database
     await db.sessions.delete_many({"user_id": current_user["id"]})
