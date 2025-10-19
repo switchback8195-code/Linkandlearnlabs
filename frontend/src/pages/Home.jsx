@@ -286,7 +286,7 @@ const Home = () => {
           <p className="body-large" style={{ marginBottom: '40px', maxWidth: '50ch', margin: '0 auto 40px' }}>
             Join thousands of PC builders and tech enthusiasts in our growing community
           </p>
-          <Button className="btn-primary" size="lg" onClick={() => navigate('/dashboard')}>Join LinkAndLearnLabs</Button>
+          <Button className="btn-primary" size="lg" onClick={handleGetStarted}>Join LinkAndLearnLabs</Button>
         </div>
       </section>
     </div>
