@@ -105,7 +105,7 @@ const Dashboard = () => {
               <div>
                 <h3 className="heading-4" style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>Continue Learning</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-                  {mockLearningPaths.slice(0, 2).map((path) => (
+                  {learningPaths.slice(0, 2).map((path) => (
                     <Card key={path.id} className="hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '24px', cursor: 'pointer' }}>
                       <Badge style={{ background: 'var(--secondary-olive)', color: 'var(--text-primary)', marginBottom: '12px' }}>{path.difficulty}</Badge>
                       <h4 className="heading-6" style={{ color: 'var(--text-primary)', marginBottom: '8px' }}>{path.title}</h4>
