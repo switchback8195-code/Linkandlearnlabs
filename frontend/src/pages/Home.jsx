@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Cpu, Users, BookOpen, Calendar, Heart, Eye, MessageSquare, TrendingUp } from 'lucide-react';
-import { mockLearningPaths, mockFeaturedBuilds, mockEvents, mockForumTopics } from '../mock';
+import { learningPathsAPI, buildsAPI, eventsAPI, forumAPI } from '../api';
+import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
   const navigate = useNavigate();
