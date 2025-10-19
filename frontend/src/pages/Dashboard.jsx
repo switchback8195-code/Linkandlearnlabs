@@ -178,7 +178,7 @@ const Dashboard = () => {
 
           <TabsContent value="builds">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-              {mockFeaturedBuilds.map((build) => (
+              {builds.map((build) => (
                 <Card key={build.id} className="overflow-hidden hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', cursor: 'pointer' }}>
                   <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
                     <img 
