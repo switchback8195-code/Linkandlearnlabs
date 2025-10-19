@@ -43,8 +43,14 @@ async def get_current_user(session_token: Optional[str] = Cookie(None), authoriz
     if not session:
         raise HTTPException(status_code=401, detail="Invalid session")
     
-    # Check if session expired
-    if session["expires_at"] < datetime.now(timezone.utc):
+    # Check if session expired - handle both naive and aware datetimes
+    expires_at = session["expires_at"]
+    if isinstance(expires_at, str):
+        expires_at = datetime.fromisoformat(expires_at.replace('Z', '+00:00'))
+    elif expires_at.tzinfo is None:
+        expires_at = expires_at.replace(tzinfo=timezone.utc)
+    
+    if expires_at < datetime.now(timezone.utc):
         await db.sessions.delete_one({"session_token": token})
         raise HTTPException(status_code=401, detail="Session expired")
     
