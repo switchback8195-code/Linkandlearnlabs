@@ -201,7 +201,7 @@ const Home = () => {
             <p className="body-medium" style={{ color: 'var(--text-secondary)' }}>Join our community events and workshops</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '32px' }}>
-            {mockEvents.map((event) => (
+            {events.map((event) => (
               <div key={event.id} className="event-card">
                 <div className="event-card-content">
                   <div>
