@@ -36,10 +36,10 @@ const Footer = () => {
           <div>
             <h4 className="heading-6" style={{ color: 'var(--text-primary)', marginBottom: '16px' }}>Quick Links</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a href="#" className="link-text" style={{ fontSize: '0.9rem' }}>Learning Paths</a>
-              <a href="#" className="link-text" style={{ fontSize: '0.9rem' }}>Community Forum</a>
-              <a href="#" className="link-text" style={{ fontSize: '0.9rem' }}>Featured Builds</a>
-              <a href="#" className="link-text" style={{ fontSize: '0.9rem' }}>Events</a>
+              <a href="/resources" className="link-text" style={{ fontSize: '0.9rem' }}>Recommended Tools</a>
+              <a href="/resources" className="link-text" style={{ fontSize: '0.9rem' }}>Video Tutorials</a>
+              <a href="/#learning-paths" className="link-text" style={{ fontSize: '0.9rem' }}>Learning Paths</a>
+              <a href="/" className="link-text" style={{ fontSize: '0.9rem' }}>Community Forum</a>
             </div>
           </div>
 
