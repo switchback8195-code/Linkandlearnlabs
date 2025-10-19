@@ -92,3 +92,28 @@ class ForumReply(BaseModel):
     author_id: str
     content: str
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class AffiliateTool(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    description: str
+    category: str
+    price: float
+    rating: float
+    image: str
+    affiliateLink: str
+    featured: bool = False
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class Video(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    description: str
+    thumbnail: str
+    videoUrl: str
+    duration: str
+    views: str
+    platforms: List[str]
+    created_at: datetime = Field(default_factory=datetime.utcnow)
