@@ -74,7 +74,7 @@ const Home = () => {
             Join our inclusive community dedicated to computer building, gaming rigs, and tech education
           </p>
           <div style={{ marginTop: '32px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <Button className="btn-primary" onClick={() => navigate('/dashboard')}>
+            <Button className="btn-primary" onClick={handleGetStarted}>
               Get Started
             </Button>
             <Button className="btn-secondary" onClick={() => document.getElementById('learning-paths').scrollIntoView({ behavior: 'smooth' })}>
