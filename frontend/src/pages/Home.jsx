@@ -128,7 +128,7 @@ const Home = () => {
             <p className="body-medium" style={{ color: 'var(--text-secondary)' }}>Check out amazing PC builds from our community</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
-            {mockFeaturedBuilds.map((build) => (
+            {builds.map((build) => (
               <Card key={build.id} className="overflow-hidden hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', cursor: 'pointer' }}>
                 <div style={{ position: 'relative', height: '250px', overflow: 'hidden' }}>
                   <img 
