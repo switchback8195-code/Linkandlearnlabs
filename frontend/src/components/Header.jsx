@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, login, logout, isAuthenticated } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const navLinks = [
@@ -22,21 +24,21 @@ const Header = () => {
       borderBottom: '1px solid var(--border-medium)',
       padding: '20px 40px'
     }}>
-      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className=\"container\" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Logo */}
         <div 
           onClick={() => navigate('/')} 
           style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          <h1 className="heading-5" style={{ color: 'var(--text-primary)', textTransform: 'uppercase' }}>LinkAndLearnLabs</h1>
+          <h1 className=\"heading-5\" style={{ color: 'var(--text-primary)', textTransform: 'uppercase' }}>LinkAndLearnLabs</h1>
         </div>
 
         {/* Desktop Navigation */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className=\"desktop-nav\">
           {navLinks.map((link) => (
             <a
               key={link.path}
-              className="nav-link"
+              className=\"nav-link\"
               onClick={() => navigate(link.path)}
               style={{
                 color: location.pathname === link.path ? 'var(--brand-primary)' : 'var(--text-primary)',
@@ -47,24 +49,40 @@ const Header = () => {
               {link.label}
             </a>
           ))}
-          <Button className="btn-primary" style={{ marginLeft: '16px' }} onClick={() => navigate('/dashboard')}>
-            Sign In
-          </Button>
+          {isAuthenticated ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
+              {user?.picture && (
+                <img 
+                  src={user.picture} 
+                  alt={user.name}
+                  style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid var(--brand-primary)' }}
+                />
+              )}
+              <Button className=\"btn-secondary\" onClick={logout} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <LogOut size={16} />
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button className=\"btn-primary\" style={{ marginLeft: '16px' }} onClick={login}>
+              Sign In
+            </Button>
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
         <button 
-          className="mobile-menu-btn"
+          className=\"mobile-menu-btn\"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer' }}
         >
-          {mobileMenuOpen ? <X size={24} color="var(--text-primary)" /> : <Menu size={24} color="var(--text-primary)" />}
+          {mobileMenuOpen ? <X size={24} color=\"var(--text-primary)\" /> : <Menu size={24} color=\"var(--text-primary)\" />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <nav className="mobile-nav" style={{ 
+        <nav className=\"mobile-nav\" style={{ 
           display: 'flex', 
           flexDirection: 'column', 
           gap: '16px', 
@@ -76,7 +94,7 @@ const Header = () => {
           {navLinks.map((link) => (
             <a
               key={link.path}
-              className="nav-link"
+              className=\"nav-link\"
               onClick={() => {
                 navigate(link.path);
                 setMobileMenuOpen(false);
@@ -91,12 +109,18 @@ const Header = () => {
               {link.label}
             </a>
           ))}
-          <Button className="btn-primary" style={{ width: '100%' }} onClick={() => {
-            navigate('/dashboard');
-            setMobileMenuOpen(false);
-          }}>
-            Sign In
-          </Button>
+          {isAuthenticated ? (
+            <Button className=\"btn-secondary\" onClick={() => { logout(); setMobileMenuOpen(false); }} style={{ width: '100%' }}>
+              Logout
+            </Button>
+          ) : (
+            <Button className=\"btn-primary\" style={{ width: '100%' }} onClick={() => {
+              login();
+              setMobileMenuOpen(false);
+            }}>
+              Sign In
+            </Button>
+          )}
         </nav>
       )}
 
