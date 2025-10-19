@@ -129,7 +129,7 @@ const Dashboard = () => {
               <div>
                 <h3 className="heading-4" style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>Recent Forum Activity</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {mockForumTopics.slice(0, 3).map((topic) => (
+                  {forumTopics.map((topic) => (
                     <Card key={topic.id} className="hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', padding: '20px', cursor: 'pointer' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', gap: '16px' }}>
                         <div style={{ flex: 1 }}>
