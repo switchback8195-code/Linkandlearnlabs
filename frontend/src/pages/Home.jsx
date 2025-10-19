@@ -9,6 +9,52 @@ import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
+  const [learningPaths, setLearningPaths] = useState([]);
+  const [builds, setBuilds] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [forumTopics, setForumTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const [pathsRes, buildsRes, eventsRes, forumRes] = await Promise.all([
+        learningPathsAPI.getAll(),
+        buildsAPI.getAll(4, 0),
+        eventsAPI.getAll(),
+        forumAPI.getTopics(null, 5, 0)
+      ]);
+
+      setLearningPaths(pathsRes.data);
+      setBuilds(buildsRes.data);
+      setEvents(eventsRes.data);
+      setForumTopics(forumRes.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    } else {
+      login();
+    }
+  };
+
+  if (loading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-page)' }}>
+        <p className="body-large">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
