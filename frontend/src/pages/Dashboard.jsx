@@ -1,13 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Badge } from '../components/ui/badge';
 import { BookOpen, Cpu, Calendar, MessageSquare, TrendingUp, Award } from 'lucide-react';
-import { mockLearningPaths, mockFeaturedBuilds, mockEvents, mockForumTopics, mockUser } from '../mock';
+import { learningPathsAPI, buildsAPI, eventsAPI, forumAPI } from '../api';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const { user, isAuthenticated, loading: authLoading, login } = useAuth();
   const [activeTab, setActiveTab] = useState('overview');
+  const [learningPaths, setLearningPaths] = useState([]);
+  const [builds, setBuilds] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [forumTopics, setForumTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (!isAuthenticated) {
+        login();
+      } else {
+        fetchData();
+      }
+    }
+  }, [authLoading, isAuthenticated]);
+
+  const fetchData = async () => {
+    try {
+      const [pathsRes, buildsRes, eventsRes, forumRes] = await Promise.all([
+        learningPathsAPI.getAll(),
+        buildsAPI.getAll(10, 0),
+        eventsAPI.getAll(),
+        forumAPI.getTopics(null, 3, 0)
+      ]);
+
+      setLearningPaths(pathsRes.data);
+      setBuilds(buildsRes.data);
+      setEvents(eventsRes.data);
+      setForumTopics(forumRes.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (authLoading || loading || !user) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-page)' }}>
+        <p className="body-large">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: '100vh', padding: '40px 20px', background: 'var(--bg-page)' }}>
