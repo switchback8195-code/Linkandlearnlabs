@@ -42,6 +42,9 @@ export const AuthProvider = ({ children }) => {
           setUser(response.data.user);
           setSessionToken(response.data.session_token);
           
+          // Track successful sign in
+          analytics.trackSignIn();
+          
           // Clean URL fragment
           window.history.replaceState(null, '', window.location.pathname);
         } catch (error) {
