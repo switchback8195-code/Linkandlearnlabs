@@ -209,7 +209,7 @@ async def like_build(build_id: str, current_user: dict = Depends(get_current_use
 async def get_events(upcoming: bool = True):
     """Get events"""
     events = await db.events.find().to_list(1000)
-    return events
+    return MongoJSONEncoder.convert_objectid(events)
 
 
 @api_router.post("/events/{event_id}/register")
