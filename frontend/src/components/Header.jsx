@@ -52,6 +52,19 @@ const Header = () => {
               {link.label}
             </a>
           ))}
+          {isAuthenticated && (
+            <a
+              className="nav-link"
+              onClick={() => navigate(adminLink.path)}
+              style={{
+                color: location.pathname === adminLink.path ? 'var(--brand-primary)' : 'var(--text-primary)',
+                fontWeight: location.pathname === adminLink.path ? 600 : 500,
+                cursor: 'pointer'
+              }}
+            >
+              {adminLink.label}
+            </a>
+          )}
           {isAuthenticated ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
               {user?.picture && (
