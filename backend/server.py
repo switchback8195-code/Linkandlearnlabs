@@ -1,5 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Response, Depends
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -8,6 +9,7 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 from datetime import datetime, timezone
+from bson import ObjectId
 
 from models import (
     User, Session, SessionCreate, LearningPath, Build, BuildCreate,
@@ -15,6 +17,20 @@ from models import (
 )
 from auth import exchange_session_id, get_current_user, create_or_update_user, create_session
 from seed_data import learning_paths_data, events_data, affiliate_tools_data, videos_data
+
+
+# Custom JSON encoder for MongoDB ObjectId
+class MongoJSONEncoder:
+    @staticmethod
+    def convert_objectid(obj):
+        """Convert MongoDB documents with ObjectId to JSON-serializable format"""
+        if isinstance(obj, list):
+            return [MongoJSONEncoder.convert_objectid(item) for item in obj]
+        elif isinstance(obj, dict):
+            return {key: MongoJSONEncoder.convert_objectid(value) for key, value in obj.items()}
+        elif isinstance(obj, ObjectId):
+            return str(obj)
+        return obj
 
 
 ROOT_DIR = Path(__file__).parent
