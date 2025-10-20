@@ -86,6 +86,10 @@ export const AuthProvider = ({ children }) => {
       await axios.post(`${API}/auth/logout`, {}, {
         withCredentials: true
       });
+      
+      // Track logout
+      analytics.trackSignOut();
+      
       setUser(null);
       setSessionToken(null);
       window.location.href = '/';
