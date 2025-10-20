@@ -285,12 +285,72 @@ async def get_affiliate_tools():
     return tools
 
 
+@api_router.post("/affiliate-tools", response_model=AffiliateTool)
+async def create_affiliate_tool(tool_data: AffiliateTool, current_user: dict = Depends(get_current_user)):
+    """Create a new affiliate tool"""
+    await db.affiliate_tools.insert_one(tool_data.dict())
+    return tool_data
+
+
+@api_router.put("/affiliate-tools/{tool_id}", response_model=AffiliateTool)
+async def update_affiliate_tool(tool_id: str, tool_data: AffiliateTool, current_user: dict = Depends(get_current_user)):
+    """Update an affiliate tool"""
+    tool = await db.affiliate_tools.find_one({"id": tool_id})
+    if not tool:
+        raise HTTPException(status_code=404, detail="Tool not found")
+    
+    await db.affiliate_tools.update_one(
+        {"id": tool_id},
+        {"$set": tool_data.dict()}
+    )
+    return tool_data
+
+
+@api_router.delete("/affiliate-tools/{tool_id}")
+async def delete_affiliate_tool(tool_id: str, current_user: dict = Depends(get_current_user)):
+    """Delete an affiliate tool"""
+    result = await db.affiliate_tools.delete_one({"id": tool_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Tool not found")
+    return {"success": True}
+
+
 # ===== Videos Routes =====
 @api_router.get("/videos", response_model=List[Video])
 async def get_videos():
     """Get all video tutorials"""
     videos = await db.videos.find().sort("created_at", -1).to_list(1000)
     return videos
+
+
+@api_router.post("/videos", response_model=Video)
+async def create_video(video_data: Video, current_user: dict = Depends(get_current_user)):
+    """Create a new video"""
+    await db.videos.insert_one(video_data.dict())
+    return video_data
+
+
+@api_router.put("/videos/{video_id}", response_model=Video)
+async def update_video(video_id: str, video_data: Video, current_user: dict = Depends(get_current_user)):
+    """Update a video"""
+    video = await db.videos.find_one({"id": video_id})
+    if not video:
+        raise HTTPException(status_code=404, detail="Video not found")
+    
+    await db.videos.update_one(
+        {"id": video_id},
+        {"$set": video_data.dict()}
+    )
+    return video_data
+
+
+@api_router.delete("/videos/{video_id}")
+async def delete_video(video_id: str, current_user: dict = Depends(get_current_user)):
+    """Delete a video"""
+    result = await db.videos.delete_one({"id": video_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Video not found")
+    return {"success": True}
 
 
 # ===== Test Route =====
