@@ -337,7 +337,7 @@ async def delete_affiliate_tool(tool_id: str, current_user: dict = Depends(get_c
 async def get_videos():
     """Get all video tutorials"""
     videos = await db.videos.find().sort("created_at", -1).to_list(1000)
-    return videos
+    return MongoJSONEncoder.convert_objectid(videos)
 
 
 @api_router.post("/videos", response_model=Video)
