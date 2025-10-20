@@ -179,7 +179,13 @@ const Resources = () => {
                     <span className="caption">{video.views} views</span>
                   </div>
                   <a href={video.videoUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                    <Button className="btn-secondary" style={{ width: '100%' }}>Watch Now</Button>
+                    <Button 
+                      className="btn-secondary" 
+                      style={{ width: '100%' }}
+                      onClick={() => analytics.trackVideoClick(video.title, video.id, video.platforms.join(', '))}
+                    >
+                      Watch Now
+                    </Button>
                   </a>
                 </div>
               </Card>
