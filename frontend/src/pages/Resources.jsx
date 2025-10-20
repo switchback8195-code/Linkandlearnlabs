@@ -95,7 +95,11 @@ const Resources = () => {
                     </Badge>
                   </div>
                   <a href={tool.affiliateLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                    <Button className="btn-primary" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <Button 
+                      className="btn-primary" 
+                      style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                      onClick={() => analytics.trackAffiliateClick(tool.name, tool.id, tool.price)}
+                    >
                       View on Amazon
                       <ExternalLink size={16} />
                     </Button>
