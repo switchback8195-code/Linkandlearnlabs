@@ -125,6 +125,23 @@ const Header = () => {
               {link.label}
             </a>
           ))}
+          {isAuthenticated && (
+            <a
+              className="nav-link"
+              onClick={() => {
+                navigate(adminLink.path);
+                setMobileMenuOpen(false);
+              }}
+              style={{
+                color: location.pathname === adminLink.path ? 'var(--brand-primary)' : 'var(--text-primary)',
+                fontWeight: location.pathname === adminLink.path ? 600 : 500,
+                cursor: 'pointer',
+                padding: '12px 0'
+              }}
+            >
+              {adminLink.label}
+            </a>
+          )}
           {isAuthenticated ? (
             <Button className="btn-secondary" onClick={() => { logout(); setMobileMenuOpen(false); }} style={{ width: '100%' }}>
               Logout
