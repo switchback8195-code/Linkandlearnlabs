@@ -16,6 +16,8 @@ const Header = () => {
     { path: '/dashboard', label: 'Dashboard' },
   ];
 
+  const adminLink = { path: '/admin', label: 'Admin' };
+
   return (
     <header style={{ 
       position: 'sticky', 
