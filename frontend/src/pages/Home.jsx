@@ -136,11 +136,12 @@ const Home = () => {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
             {builds.map((build) => (
-              <Card key={build.id} className="overflow-hidden hover-lift" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-medium)', cursor: 'pointer' }}>
+              <Card key={build.id} className="card-gaming hover-lift" style={{ cursor: 'pointer' }}>
                 <div style={{ position: 'relative', height: '250px', overflow: 'hidden' }}>
                   <img 
                     src={build.image} 
                     alt={build.title}
+                    className="image-zoom"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
@@ -150,7 +151,7 @@ const Home = () => {
                   <p className="body-small" style={{ marginBottom: '16px' }}>{build.specs}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Heart size={16} color="var(--text-secondary)" />
+                      <Heart size={16} color="var(--accent-pink)" />
                       <span className="body-small">{build.likes}</span>
                     </div>
                     <span className="caption" style={{ color: 'var(--text-muted)' }}>{build.date}</span>
