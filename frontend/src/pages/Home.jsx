@@ -58,27 +58,34 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with Video Background */}
       <section className="hero-section">
-        <div className="hero-background">
-          <img 
-            src="https://images.pexels.com/photos/7199194/pexels-photo-7199194.jpeg" 
-            alt="Tech workspace"
-            className="hero-image"
-          />
-          <div className="hero-overlay"></div>
+        <div className="hero-video-container">
+          <video 
+            className="hero-video" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src="https://cdn.pixabay.com/video/2020/04/13/35092-408050155_large.mp4" type="video/mp4" />
+          </video>
         </div>
+        <div className="hero-overlay"></div>
+        <div className="hero-grid"></div>
         <div className="hero-content">
-          <h1 className="hero-title">Build. Learn. Connect.</h1>
-          <p className="body-large" style={{ marginTop: '24px', maxWidth: '30ch' }}>
+          <h1 className="hero-title animate-fade-in">
+            BUILD. LEARN. CONNECT.
+          </h1>
+          <p className="body-large animate-fade-in-up animate-delay-200" style={{ marginTop: '24px', marginBottom: '40px' }}>
             Join our inclusive community dedicated to computer building, gaming rigs, and tech education
           </p>
-          <div style={{ marginTop: '32px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }} className="animate-fade-in-up animate-delay-400">
             <Button className="btn-primary" onClick={handleGetStarted}>
-              Get Started
+              GET STARTED
             </Button>
             <Button className="btn-secondary" onClick={() => document.getElementById('learning-paths').scrollIntoView({ behavior: 'smooth' })}>
-              Explore Learning
+              EXPLORE LEARNING
             </Button>
           </div>
         </div>
