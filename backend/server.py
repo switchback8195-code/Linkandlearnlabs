@@ -138,7 +138,7 @@ async def get_learning_path(path_id: str):
     path = await db.learning_paths.find_one({"id": path_id})
     if not path:
         raise HTTPException(status_code=404, detail="Learning path not found")
-    return path
+    return MongoJSONEncoder.convert_objectid(path)
 
 
 @api_router.post("/learning-paths/{path_id}/enroll")
