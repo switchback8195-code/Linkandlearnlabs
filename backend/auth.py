@@ -59,6 +59,10 @@ async def get_current_user(session_token: Optional[str] = Cookie(None), authoriz
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
     
+    # Remove MongoDB _id field and return
+    if '_id' in user:
+        del user['_id']
+    
     return user
 
 
