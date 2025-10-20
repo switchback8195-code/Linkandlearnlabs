@@ -249,7 +249,7 @@ async def get_forum_topics(category: Optional[str] = None, limit: int = 20, offs
         query["category"] = category
     
     topics = await db.forum_topics.find(query).sort("lastActivity", -1).skip(offset).limit(limit).to_list(limit)
-    return topics
+    return MongoJSONEncoder.convert_objectid(topics)
 
 
 @api_router.post("/forum/topics", response_model=ForumTopic)
