@@ -58,7 +58,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Video Background */}
+      {/* Hero Section with Space Video Background */}
       <section className="hero-section">
         <div className="hero-video-container">
           <video 
@@ -68,24 +68,29 @@ const Home = () => {
             muted 
             playsInline
           >
-            <source src="https://cdn.pixabay.com/video/2020/04/13/35092-408050155_large.mp4" type="video/mp4" />
+            <source src="https://cdn.pixabay.com/video/2022/02/11/107728-677090644_large.mp4" type="video/mp4" />
+            {/* Fallback space video */}
+            <source src="https://cdn.pixabay.com/video/2020/06/02/40940-426867066_large.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="hero-overlay"></div>
         <div className="hero-grid"></div>
         <div className="hero-content">
-          <h1 className="hero-title animate-fade-in">
-            BUILD. LEARN. CONNECT.
+          <div className="mission-badge animate-fade-in">
+            MISSION CONTROL
+          </div>
+          <h1 className="hero-title animate-fade-in" style={{ marginTop: '20px' }}>
+            BUILD. LEARN. EXPLORE.
           </h1>
           <p className="body-large animate-fade-in-up animate-delay-200" style={{ marginTop: '24px', marginBottom: '40px' }}>
-            Join our inclusive community dedicated to computer building, gaming rigs, and tech education
+            Join our community of tech astronauts exploring the frontiers of computer building and gaming technology
           </p>
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }} className="animate-fade-in-up animate-delay-400">
             <Button className="btn-primary" onClick={handleGetStarted}>
-              GET STARTED
+              BEGIN MISSION
             </Button>
             <Button className="btn-secondary" onClick={() => document.getElementById('learning-paths').scrollIntoView({ behavior: 'smooth' })}>
-              EXPLORE LEARNING
+              EXPLORE CATALOG
             </Button>
           </div>
         </div>
