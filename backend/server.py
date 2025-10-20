@@ -163,7 +163,7 @@ async def enroll_learning_path(path_id: str, current_user: dict = Depends(get_cu
 async def get_builds(limit: int = 10, offset: int = 0):
     """Get featured builds"""
     builds = await db.builds.find().sort("date", -1).skip(offset).limit(limit).to_list(limit)
-    return builds
+    return MongoJSONEncoder.convert_objectid(builds)
 
 
 @api_router.post("/builds", response_model=Build)
