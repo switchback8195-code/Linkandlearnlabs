@@ -1,89 +1,141 @@
-/* LinkAndLearnLabs - Teal Gaming Tech Design System */
+/* LinkAndLearnLabs - Space Tech / Astronaut Theme */
 
-/* Import Futuristic Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+/* Import Space-Tech Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Audiowide:wght@400&family=Exo+2:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Teal/Turquoise Gaming Palette */
-  --bg-page: #0a0e1a;
-  --bg-card: #121826;
-  --bg-light: #1a2332;
+  /* Cosmic Space Palette */
+  --bg-page: #0B0C10;
+  --bg-card: #1F2833;
+  --bg-light: #C5C6C7;
   
-  --text-primary: #00f5ff;
-  --text-secondary: #7dd3fc;
-  --text-muted: #475569;
-  --text-inverse: #0a0e1a;
+  --text-primary: #66FCF1;
+  --text-secondary: #C5C6C7;
+  --text-muted: #45A29E;
+  --text-inverse: #0B0C10;
   
-  --border-light: rgba(0, 245, 255, 0.2);
-  --border-medium: rgba(0, 245, 255, 0.3);
-  --border-strong: #00f5ff;
+  --border-light: rgba(102, 252, 241, 0.2);
+  --border-medium: rgba(102, 252, 241, 0.3);
+  --border-strong: #66FCF1;
   
-  --brand-primary: #00f5ff;
-  --brand-hover: rgba(0, 245, 255, 0.8);
-  --brand-active: rgba(0, 245, 255, 0.6);
+  --brand-primary: #66FCF1;
+  --brand-hover: rgba(102, 252, 241, 0.8);
+  --brand-active: rgba(69, 162, 158, 0.9);
   
-  /* Gaming Accent Colors */
-  --accent-purple: #a855f7;
-  --accent-pink: #ec4899;
-  --accent-orange: #f97316;
-  --accent-green: #10b981;
+  /* Space Accent Colors */
+  --accent-purple: #8B5CF6;
+  --accent-blue: #3B82F6;
+  --accent-orange: #F59E0B;
+  --accent-pink: #EC4899;
   
-  /* Neon Glows */
-  --glow-cyan: 0 0 20px rgba(0, 245, 255, 0.5);
-  --glow-purple: 0 0 20px rgba(168, 85, 247, 0.5);
-  --glow-pink: 0 0 20px rgba(236, 72, 153, 0.5);
+  /* Cosmic Glows */
+  --glow-cyan: 0 0 20px rgba(102, 252, 241, 0.5), 0 0 40px rgba(102, 252, 241, 0.3);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.5);
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
-/* Light Theme Override */
+/* Light Theme Override - Space Station Interior */
 [data-theme="light"] {
-  --bg-page: #f0f9ff;
-  --bg-card: #ffffff;
-  --bg-light: #e0f2fe;
+  --bg-page: #E8F4F8;
+  --bg-card: #FFFFFF;
+  --bg-light: #F0F9FF;
   
-  --text-primary: #0891b2;
-  --text-secondary: #0e7490;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
+  --text-primary: #0891B2;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
   
   --border-light: rgba(8, 145, 178, 0.2);
   --border-medium: rgba(8, 145, 178, 0.3);
-  --border-strong: #0891b2;
+  --border-strong: #0891B2;
   
-  --brand-primary: #0891b2;
+  --brand-primary: #0891B2;
   --brand-hover: rgba(8, 145, 178, 0.8);
   --brand-active: rgba(8, 145, 178, 0.6);
 }
 
-/* Typography System - Futuristic */
+/* Typography System - Space Tech */
 body {
-  font-family: 'Rajdhani', -apple-system, sans-serif;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
   background: var(--bg-page);
   color: var(--text-secondary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated starfield background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 80%, white, transparent),
+    radial-gradient(1px 1px at 15% 90%, white, transparent);
+  background-size: 200% 200%;
+  animation: stars 60s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes stars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Moving nebula effect */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 30% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, rgba(102, 252, 241, 0.05) 0%, transparent 50%);
+  animation: nebula 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes nebula {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10%, 10%) rotate(180deg); }
 }
 
 .brand-display {
-  font-family: 'Orbitron', monospace;
-  font-weight: 900;
+  font-family: 'Audiowide', monospace;
+  font-weight: 400;
   font-size: clamp(4rem, 5vw, 7rem);
   line-height: 1;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-shadow: var(--glow-cyan);
+  position: relative;
 }
 
 .heading-1 {
-  font-family: 'Orbitron', monospace;
-  font-weight: 900;
+  font-family: 'Audiowide', monospace;
+  font-weight: 400;
   font-size: clamp(2.5rem, 4vw, 4rem);
   line-height: 1.1;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--text-primary);
 }
 
 .heading-2 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 1.2;
@@ -93,7 +145,7 @@ body {
 }
 
 .heading-3 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   line-height: 1.2;
@@ -102,7 +154,7 @@ body {
 }
 
 .heading-4 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.3;
@@ -110,7 +162,7 @@ body {
 }
 
 .heading-5 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
   line-height: 1.3;
@@ -118,7 +170,7 @@ body {
 }
 
 .heading-6 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.4;
@@ -126,23 +178,23 @@ body {
 }
 
 .body-large {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
   font-size: 1.5rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .body-medium {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .body-small {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.6;
@@ -150,49 +202,49 @@ body {
 }
 
 .caption {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 1.4;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
-/* Gaming Button Styles */
+/* Astronaut/Space Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--brand-primary), var(--accent-purple));
+  background: linear-gradient(135deg, #45A29E 0%, #66FCF1 100%);
   color: var(--text-inverse);
   border: 2px solid var(--brand-primary);
-  border-radius: 8px;
-  padding: 0.875em 2em;
-  font-family: 'Orbitron', monospace;
+  border-radius: 4px;
+  padding: 1em 2.5em;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   box-shadow: var(--glow-cyan), 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: rotate(45deg);
-  transition: all 0.5s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 245, 255, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 30px rgba(102, 252, 241, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .btn-primary:hover::before {
@@ -204,20 +256,22 @@ body {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: rgba(31, 40, 51, 0.8);
   color: var(--brand-primary);
   border: 2px solid var(--brand-primary);
-  border-radius: 8px;
-  padding: 0.875em 2em;
-  font-family: 'Orbitron', monospace;
+  border-radius: 4px;
+  padding: 1em 2.5em;
+  font-family: 'Exo 2', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   transition: all 0.3s ease;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary::before {
@@ -227,13 +281,13 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(102, 252, 241, 0.2), transparent);
   transition: left 0.5s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 245, 255, 0.1);
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+  background: rgba(102, 252, 241, 0.1);
+  box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
   transform: translateY(-2px);
 }
 
@@ -245,13 +299,13 @@ body {
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  font-family: 'Orbitron', monospace;
+  font-family: 'Exo 2', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0.75em 1.25em;
   position: relative;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   transition: all 0.3s ease;
 }
 
@@ -262,22 +316,39 @@ body {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--brand-primary), var(--accent-purple));
+  background: var(--brand-primary);
   transform: translateX(-50%);
   transition: width 0.3s ease;
   box-shadow: var(--glow-cyan);
 }
 
+.nav-link::after {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  color: var(--brand-primary);
+  transition: opacity 0.3s ease;
+  font-size: 0.6em;
+}
+
 .nav-link:hover {
   color: var(--brand-primary);
   text-shadow: var(--glow-cyan);
+  padding-left: 1.75em;
 }
 
 .nav-link:hover::before {
   width: 80%;
 }
 
-/* Hero Section - Video Background */
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+/* Hero Section - Space/Astronaut */
 .hero-section {
   background: var(--bg-page);
   min-height: 100vh;
@@ -302,7 +373,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.25;
+  filter: brightness(0.7);
 }
 
 .hero-overlay {
@@ -311,11 +383,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(10, 14, 26, 0.9), rgba(18, 24, 38, 0.85));
+  background: radial-gradient(ellipse at center, rgba(11, 12, 16, 0.7) 0%, rgba(11, 12, 16, 0.95) 100%);
   pointer-events: none;
 }
 
-/* Animated grid overlay */
+/* Hexagonal grid overlay */
 .hero-grid {
   position: absolute;
   top: 0;
@@ -323,20 +395,19 @@ body {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 245, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 245, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
+    linear-gradient(30deg, rgba(102, 252, 241, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(102, 252, 241, 0.03) 87.5%, rgba(102, 252, 241, 0.03)),
+    linear-gradient(150deg, rgba(102, 252, 241, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(102, 252, 241, 0.03) 87.5%, rgba(102, 252, 241, 0.03)),
+    linear-gradient(30deg, rgba(102, 252, 241, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(102, 252, 241, 0.03) 87.5%, rgba(102, 252, 241, 0.03)),
+    linear-gradient(150deg, rgba(102, 252, 241, 0.03) 12%, transparent 12.5%, transparent 87%, rgba(102, 252, 241, 0.03) 87.5%, rgba(102, 252, 241, 0.03));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+  animation: hexMove 20s linear infinite;
   pointer-events: none;
 }
 
-@keyframes gridMove {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(50px);
-  }
+@keyframes hexMove {
+  0% { background-position: 0 0, 0 0, 40px 70px, 40px 70px; }
+  100% { background-position: 0 140px, 0 140px, 40px 210px, 40px 210px; }
 }
 
 .hero-content {
@@ -348,90 +419,109 @@ body {
 }
 
 .hero-title {
-  font-family: 'Orbitron', monospace;
-  font-weight: 900;
+  font-family: 'Audiowide', monospace;
+  font-weight: 400;
   font-size: clamp(3rem, 6vw, 6rem);
   line-height: 1.1;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 30px rgba(0, 245, 255, 0.6),
-               0 0 60px rgba(0, 245, 255, 0.4);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 30px rgba(102, 252, 241, 0.6),
+               0 0 60px rgba(102, 252, 241, 0.4),
+               0 0 100px rgba(102, 252, 241, 0.2);
   margin-bottom: 24px;
-  animation: glowPulse 3s ease-in-out infinite;
+  animation: spaceGlow 4s ease-in-out infinite;
 }
 
-@keyframes glowPulse {
+@keyframes spaceGlow {
   0%, 100% {
-    text-shadow: 0 0 30px rgba(0, 245, 255, 0.6),
-                 0 0 60px rgba(0, 245, 255, 0.4);
+    text-shadow: 0 0 30px rgba(102, 252, 241, 0.6),
+                 0 0 60px rgba(102, 252, 241, 0.4),
+                 0 0 100px rgba(102, 252, 241, 0.2);
   }
   50% {
-    text-shadow: 0 0 40px rgba(0, 245, 255, 0.8),
-                 0 0 80px rgba(0, 245, 255, 0.6),
-                 0 0 100px rgba(168, 85, 247, 0.4);
+    text-shadow: 0 0 40px rgba(102, 252, 241, 0.8),
+                 0 0 80px rgba(102, 252, 241, 0.6),
+                 0 0 120px rgba(102, 252, 241, 0.4),
+                 0 0 160px rgba(139, 92, 246, 0.3);
   }
 }
 
-/* Card Styles - Gaming Tech */
+/* Space Tech Card Styles */
 .card-gaming {
-  background: var(--bg-card);
+  background: rgba(31, 40, 51, 0.8);
   border: 2px solid var(--border-medium);
-  border-radius: 12px;
+  border-radius: 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
 }
 
 .card-gaming::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(0, 245, 255, 0.05), transparent);
-  transform: rotate(45deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 30%, rgba(102, 252, 241, 0.05) 50%, transparent 70%);
   pointer-events: none;
+}
+
+.card-gaming::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--brand-primary), var(--accent-purple), var(--accent-blue));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
 }
 
 .card-gaming:hover {
   border-color: var(--brand-primary);
-  box-shadow: 0 0 30px rgba(0, 245, 255, 0.3),
+  box-shadow: 0 0 30px rgba(102, 252, 241, 0.3),
               0 10px 40px rgba(0, 0, 0, 0.5);
   transform: translateY(-8px);
 }
 
-/* RGB Border Animation */
-@keyframes rgbBorder {
-  0% {
-    border-color: var(--brand-primary);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
-  }
-  33% {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-  }
-  66% {
-    border-color: var(--accent-pink);
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-  }
-  100% {
-    border-color: var(--brand-primary);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
-  }
+.card-gaming:hover::after {
+  opacity: 0.5;
+  animation: borderRotate 3s linear infinite;
 }
 
-.rgb-border {
-  animation: rgbBorder 3s linear infinite;
+@keyframes borderRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
 }
 
-/* Neon Text Effect */
-.neon-text {
-  color: var(--text-primary);
-  text-shadow: 0 0 10px rgba(0, 245, 255, 0.8),
-               0 0 20px rgba(0, 245, 255, 0.6),
-               0 0 30px rgba(0, 245, 255, 0.4);
+/* Mission badge style */
+.mission-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(102, 252, 241, 0.1);
+  border: 1px solid var(--brand-primary);
+  border-radius: 2px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand-primary);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+}
+
+.mission-badge::before {
+  content: '◆';
+  font-size: 0.7em;
 }
 
 /* Container */
@@ -439,6 +529,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive */
