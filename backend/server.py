@@ -299,7 +299,7 @@ async def reply_forum_topic(topic_id: str, content: str, current_user: dict = De
 async def get_affiliate_tools():
     """Get all affiliate tools"""
     tools = await db.affiliate_tools.find().sort("featured", -1).to_list(1000)
-    return tools
+    return MongoJSONEncoder.convert_objectid(tools)
 
 
 @api_router.post("/affiliate-tools", response_model=AffiliateTool)
