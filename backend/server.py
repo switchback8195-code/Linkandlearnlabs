@@ -128,6 +128,7 @@ async def logout(response: Response, current_user: dict = Depends(get_current_us
 async def get_learning_paths():
     """Get all learning paths"""
     paths = await db.learning_paths.find().to_list(1000)
+    paths = MongoJSONEncoder.convert_objectid(paths)
     return paths
 
 
