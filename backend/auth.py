@@ -71,6 +71,9 @@ async def create_or_update_user(db: AsyncIOMotorDatabase, user_data: dict) -> di
     existing_user = await db.users.find_one({"email": user_data["email"]})
     
     if existing_user:
+        # Remove MongoDB _id field
+        if '_id' in existing_user:
+            del existing_user['_id']
         return existing_user
     
     # Create new user
