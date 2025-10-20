@@ -8,6 +8,7 @@ import Admin from "./pages/Admin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { Toaster } from "./components/ui/sonner";
 import { initGA, trackPageView } from "./utils/analytics";
 
@@ -31,21 +32,23 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider>
-        <BrowserRouter>
-          <AnalyticsTracker>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/admin" element={<Admin />} />
-            </Routes>
-            <Footer />
-            <Toaster />
-          </AnalyticsTracker>
-        </BrowserRouter>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <AnalyticsTracker>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/admin" element={<Admin />} />
+              </Routes>
+              <Footer />
+              <Toaster />
+            </AnalyticsTracker>
+          </BrowserRouter>
+        </AuthProvider>
+      </ThemeProvider>
     </div>
   );
 }
