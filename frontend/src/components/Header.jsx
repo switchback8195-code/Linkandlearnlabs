@@ -68,6 +68,7 @@ const Header = () => {
           )}
           {isAuthenticated ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
+              <ThemeToggle />
               {user?.picture && (
                 <img 
                   src={user.picture} 
@@ -81,9 +82,12 @@ const Header = () => {
               </Button>
             </div>
           ) : (
-            <Button className="btn-primary" style={{ marginLeft: '16px' }} onClick={login}>
-              Sign In
-            </Button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginLeft: '16px' }}>
+              <ThemeToggle />
+              <Button className="btn-primary" onClick={login}>
+                Sign In
+              </Button>
+            </div>
           )}
         </nav>
 
